@@ -15,6 +15,8 @@ import com.example.co_opt1.ui.theme.CoOpt1Theme
 /* Test Commit */
 
 class MainActivity : ComponentActivity() {
+    private val URL = "https://dummyjson.com/products"
+    
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {

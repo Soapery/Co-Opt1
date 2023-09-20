@@ -3,6 +3,7 @@ package com.example.co_opt1
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -19,25 +20,29 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             CoOpt1Theme {
-                // A surface container using the 'background' color from the theme
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
-                ) {
-                    Greeting("Android")
-                }
+                Greeting("Android")
             }
         }
     }
 }
 
+@Composable
+fun NumberedTextBoxes(numTextboxes: Int) {
+    Column {
+        for (i in 1..numTextboxes) {
+            Text(text = "Text Box $i")
+        }
+    }
+}
 
 @Composable
 fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
+    Surface(
+        modifier = modifier.fillMaxSize(),
+        color = MaterialTheme.colorScheme.background
+    ) {
+        NumberedTextBoxes(numTextboxes = 5) // Adjust the number of text boxes here
+    }
 }
 
 @Preview(showBackground = true)

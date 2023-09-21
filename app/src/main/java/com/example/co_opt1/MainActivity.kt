@@ -13,9 +13,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.co_opt1.ui.theme.CoOpt1Theme
 
+
 /* Test Commit */
 
 class MainActivity : ComponentActivity() {
+
+    private val BASE_URL = "https://dummyjson.com/products"
+    private val TAG: String = "CHECK_RESPONSE"
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -25,6 +30,8 @@ class MainActivity : ComponentActivity() {
         }
     }
 }
+
+
 
 @Composable
 fun NumberedTextBoxes(numTextboxes: Int) {
@@ -41,7 +48,7 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
         modifier = modifier.fillMaxSize(),
         color = MaterialTheme.colorScheme.background
     ) {
-        NumberedTextBoxes(numTextboxes = 5) // Adjust the number of text boxes here
+        NumberedTextBoxes(numTextboxes = 10) // Adjust the number of text boxes here
     }
 }
 

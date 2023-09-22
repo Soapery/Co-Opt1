@@ -50,15 +50,15 @@ private fun getAllProducts() {
         .create(myAPI::class.java)
 
     api.getProducts().enqueue(object : Callback<Products>{
-        override fun onResponse(call: Call<List<products>>, response: Response<List<products>>) {
+        override fun onResponse(call: Call<Products>, response: Response<Products>) {
             response.body()?.let{
                 for (product in it){
-                    Log.i(TAG, "onResponse: ${products.id}")
+                    Log.i(TAG, "onResponse: ${product.id}")
                 }
             }
         }
 
-        override fun onFailure(call: Call<List<products>>, t: Throwable) {
+        override fun onFailure(call: Call<Products>, t: Throwable) {
             Log.i(TAG, "onFailure: ${t.message}")
         }
 

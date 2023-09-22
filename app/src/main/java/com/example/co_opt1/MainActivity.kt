@@ -32,7 +32,7 @@ class MainActivity : ComponentActivity() {
             CoOpt1Theme {
                 Greeting("Android")
 
-                getAllComments()
+                getAllProducts()
 
             }
 
@@ -42,23 +42,23 @@ class MainActivity : ComponentActivity() {
 }
 private val BASE_URL = "https://jsonplaceholder.typicode.com/"
 private val TAG: String = "CHECK_RESPONSE"
-private fun getAllComments() {
+private fun getAllProducts() {
     val api = Retrofit.Builder()
         .baseUrl(BASE_URL)
         .addConverterFactory(GsonConverterFactory.create())
         .build()
         .create(myAPI::class.java)
 
-    api.getComments().enqueue(object : Callback<List<Comments>>{
-        override fun onResponse(call: Call<List<Comments>>, response: Response<List<Comments>>) {
+    api.getProducts().enqueue(object : Callback<Products>{
+        override fun onResponse(call: Call<List<products>>, response: Response<List<products>>) {
             response.body()?.let{
-                for (comment in it){
-                    Log.i(TAG, "onResponse: ${comment.body}")
+                for (product in it){
+                    Log.i(TAG, "onResponse: ${products.id}")
                 }
             }
         }
 
-        override fun onFailure(call: Call<List<Comments>>, t: Throwable) {
+        override fun onFailure(call: Call<List<products>>, t: Throwable) {
             Log.i(TAG, "onFailure: ${t.message}")
         }
 

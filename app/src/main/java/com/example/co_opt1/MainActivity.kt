@@ -21,7 +21,6 @@ import androidx.compose.ui.unit.dp
 import com.example.co_opt1.ui.theme.RetrofitInstance
 
 
-
 class MainActivity : ComponentActivity() {
 
 
@@ -40,8 +39,6 @@ class MainActivity : ComponentActivity() {
         fetchDataFromApi()
     }
 
-
-    ///CHANGE MY DATA TO PRODUCTS
     @Composable
     fun MyApp(products: Products?) {
         Surface(
@@ -74,20 +71,28 @@ class MainActivity : ComponentActivity() {
 
     }
 
-
+    /**
+     * This function fetches products data from an API using Retrofit library.
+     */
     private fun fetchDataFromApi() {
+        // Create an instance of the API service using Retrofit
         val apiService = RetrofitInstance.retrofit.create(myAPI::class.java)
+
+        // Make an API call to get products
         val call = apiService.getProducts()
 
+        // Asynchronous callback for a successful API response
         call.enqueue(object : Callback<Products> {
             override fun onResponse(call: Call<Products>, response: Response<Products>) {
                 if (response.isSuccessful) {
+                    // Extract the response body (products data) from the API response
                     val myData = response.body()
 
                     // Update the jsonData state variable with the fetched data
                     jsonData = myData
                 } else {
-                    // Handle unsuccessful response
+                    // Handle an unsuccessful API response
+                    // Typically, this would include error handling logic
                 }
             }
 
@@ -98,63 +103,3 @@ class MainActivity : ComponentActivity() {
     }
 }
 //
-//
-//
-//
-//
-//
-//
-//private val BASE_URL = "https://jsonplaceholder.typicode.com/"
-//private val TAG: String = "CHECK_RESPONSE"
-//private fun getAllProducts() {
-//    val api = Retrofit.Builder()
-//        .baseUrl(BASE_URL)
-//        .addConverterFactory(GsonConverterFactory.create())
-//        .build()
-//        .create(myAPI::class.java)
-//
-//    api.getProducts().enqueue(object : Callback<Products>{
-//        override fun onResponse(call: Call<Products>, response: Response<Products>) {
-//            response.body()?.let{
-//                for (product in it){
-//                    Log.i(TAG, "onResponse: ${product.id}")
-//                }
-//            }
-//        }
-//
-//        override fun onFailure(call: Call<Products>, t: Throwable) {
-//            Log.i(TAG, "onFailure: ${t.message}")
-//        }
-//
-//    })
-//}
-//
-//
-//
-//
-//@Composable
-//fun NumberedTextBoxes(numTextboxes: Int) {
-//    Column {
-//        for (i in 1..numTextboxes) {
-//            Text(text = "Text Box $i")
-//        }
-//    }
-//}
-//
-//@Composable
-//fun Greeting(name: String, modifier: Modifier = Modifier) {
-//    Surface(
-//        modifier = modifier.fillMaxSize(),
-//        color = MaterialTheme.colorScheme.background
-//    ) {
-////        NumberedTextBoxes(numTextboxes = 10) // Adjust the number of text boxes here
-//    }
-//}
-//
-//@Preview(showBackground = true)
-//@Composable
-//fun GreetingPreview() {
-//    CoOpt1Theme {
-//        Greeting("Android")
-//    }
-//}
